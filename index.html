@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Rapid Mismatch Estimation via Neural Network Informed Variational Inference">
-  <meta name="keywords" content="RME, Impedance Control, System Identification">
+        content="Multimodal Interaction Estimation for
+Contact-Aware Adaptive Impedance Control">
+  <meta name="keywords" content="Adaptive Impedance Control">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rapid Mismatch Estimation</title>
+  <title>Multimodal Interaction Estimation for Contact-Aware Adaptive Impedance Control</title>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+
   <script>
     window.dataLayer = window.dataLayer || [];
 
@@ -48,10 +48,10 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">
-            Rapid Mismatch Estimation via Neural Network Informed Variational Inference
+          <h1 class="title is-2 publication-title">
+            Multimodal Interaction Estimation for Contact-Aware Adaptive Impedance Control
           </h1>
-          <div class="is-size-5 publication-authors">
+          <!-- <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://mateuszjaszczuk.com">Mateusz Jaszczuk</a>,
             </span>
@@ -68,7 +68,7 @@
           </div>
           <div class="column has-text-centered">
             <div class="publication-links">
-              <!-- PDF Link -->
+              PDF Link
               <span class="link-block">
                 <a href="https://openreview.net/pdf?id=2CIKnIwSta"
                    class="external-link button is-normal is-rounded is-dark">
@@ -78,7 +78,7 @@
                   <span>Paper</span>
                 </a>
               </span>
-              <!-- arXiv Link -->
+              arXiv Link
               <span class="link-block">
                 <a href="https://arxiv.org/abs/2508.21007"
                    class="external-link button is-normal is-rounded is-dark">
@@ -97,7 +97,7 @@
                   <span>Video</span>
                 </a>
               </span>
-              <!-- Code Link -->
+              Code Link
               <span class="link-block">
                 <a href="https://github.com/mateusz-jaszczuk/RapidMismatchEstimation"
                    class="external-link button is-normal is-rounded is-dark">
@@ -108,7 +108,7 @@
                 </a>
               </span>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -119,10 +119,10 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100% ">
-        <source src="./static/videos/teaser.mp4"
-                type="video/mp4">
-      </video>
+      <img id="teaser" src="./static/images/framework.png" alt="Framework overview" style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+      <h2 class="subtitle has-text-justified mt-4">
+        <strong>Interaction Classification and Adaptive Control Framework.</strong> We utilize a transformer-based architecture to fuse latent force and point cloud representations, allowing the model to distinguish applied payloads from perturbations using both modalities, allowing the adaptive controller to adjust gravity compensation and compliance accordingly.
+      </h2>
     </div>
   </div>
 </section>
@@ -136,21 +136,18 @@
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              With robots increasingly operating in human-centric environments, 
-              ensuring soft and safe physical interactions, whether with humans, 
-              surroundings, or other machines, is essential. While compliant hardware can facilitate such interactions, 
-              this work focuses on impedance controllers that allow torque-controlled robots to safely and passively respond to 
-              contact while accurately executing tasks. From inverse dynamics to quadratic programming based controllers, the effectiveness 
-              of these methods relies on accurate dynamics models of the robot and the object it manipulates. Any model mismatch results in 
-              task failures and unsafe behaviors. Thus, we introduce Rapid Mismatch Estimation (RME), an adaptive, controller-agnostic, 
-              probabilistic framework that estimates end-effector dynamics mismatches online, without relying on external force-torque sensors. 
-              From the robot's proprioceptive feedback, a Neural Network Model Mismatch Estimator generates a prior for a Variational Inference 
-              solver, which rapidly converges to the unknown parameters while quantifying uncertainty. With a real 7-DoF manipulator driven by a 
-              state-of-the-art passive impedance controller, RME adapts to sudden changes in mass and center of mass at the end-effector in 
-              ~400 ms, in static and dynamic settings. 
-              We demonstrate RME in a collaborative scenario where a human attaches an unknown basket to the robot's end-effector 
-              and dynamically adds/removes heavy items, showcasing fast and safe adaptation to changing dynamics during physical 
-              interaction without any external sensory system.
+              With advancements in learning-based policies, robots are increasingly being deployed in human-centric environments, 
+              such as manufacturing floors and homes, where safe and precise operation requires compensating for unknown loads while 
+              remaining compliant during human interactions. Reliably distinguishing between these interaction types, however, is 
+              challenging with a single sensing modality, as force signals cannot distinguish between payloads and human push, and 
+              vision is susceptible to occlusions. We propose a task-agnostic interaction estimation and adaptive control 
+              framework that addresses this challenge by fusing force history and 3D point cloud through a transformer-based classifier. 
+              Trained with modality dropout for occlusion resilience and fine-tuned from simulation to hardware, the classifier achieves 
+              96.3% accuracy and maintains above 90% under complete occlusion of one modality. The classifier drives a system identification
+               framework that selectively compensates for unknown payloads and a variable-impedance controller that switches between adaptive 
+               and reactive modes, while simultaneously estimating interaction forces for downstream tasks, such as human intent estimation. 
+               We validate the framework under external perturbations across single-arm manipulation, intent-driven target switching, and zero-shot 
+               bimanual deployment on two Franka arms lifting a box of unknown mass, demonstrating generalization to closed kinematic chains and unseen morphologies.
             </p>
           </div>
         </div>
@@ -168,34 +165,30 @@
     <!-- Static Tests. -->
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Static Experiments</h2>
+        <h2 class="title is-3">Experiment 1...</h2>
 
         <div class="columns is-centered">
           <!-- First Video Column -->
           <div class="column">
             <div class="content has-text-justified">
-              <video id="static_900" autoplay controls muted loop playsinline height="100%">
+              <!-- <video id="static_900" autoplay controls muted loop playsinline height="100%">
                 <source src="./static/videos/static_900g.mp4" type="video/mp4">
-              </video>
+              </video> -->
             </div>
           </div>
     
           <!-- Second Video Column -->
           <div class="column">
             <div class="content has-text-justified">
-              <video id="static_1290" autoplay controls muted loop playsinline height="100%">
+              <!-- <video id="static_1290" autoplay controls muted loop playsinline height="100%">
                 <source src="./static/videos/static_1290.mp4" type="video/mp4">
-              </video>
+              </video> -->
             </div>
           </div>
         </div>
         <div class="content has-text-justified">
           <p>
-            To evaluate RME, we extensively tested the model with multiple static experiments, 
-            where the physical manipulator, subject to sudden changes in the dynamics model resulting from adding unknown mass to the end-effector, 
-            aimed to maintain the target equilibrium position and orientation. We compare the response of nominal <a href="https://ieeexplore.ieee.org/abstract/document/10610232">Constrained Passive Interaction Controller (CPIC)</a> to the same controller with RME gravity compensation augmentation.
-            RME provided rapid and accurate estimation of the attached external load,
-            allowing the robot to quickly converge to the equilibrium position from before applying the mismatch.
+            Description goes here...
           </p>
         </div>
       </div>
@@ -204,129 +197,14 @@
 
 
 
-    <!-- Limit Cycle. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Tracking a Stable Limit Cycle</h2>
-
-        <div class="columns is-centered">
-          <!-- First Video Column -->
-          <div class="column">
-            <div class="content has-text-justified">
-              <video id="lc1" autoplay controls muted loop playsinline height="100%">
-                <source src="./static/videos/limit_cycle_1.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
+  
     
-          <!-- Second Video Column -->
-          <div class="column">
-            <div class="content has-text-justified">
-              <video id="lc2" autoplay controls muted loop playsinline height="100%">
-                <source src="./static/videos/limit_cycle_2.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
 
-      
-        <div class="content has-text-justified">
-          <p>
-            To test the model in the dynamic scenario, we designed a Dynamical System with a stable limit cycle in the y-z plane, 
-            where the manipulator aims to achieve target velocities from the motion planner. As shown,
-             RME rapidly estimates mismatch parameters, allowing the robot to converge to the desired trajectory. Without adaptation, 
-             the manipulator reaches the spurious attractor, where the task force from the impedance controller is balanced by the gravitational 
-             force acting on the mass mismatch, preventing it from continuing on the given task.
-          </p>
-        </div>
-      </div>
-    </div>
-    <!--/ Limit Cycle -->
 
-    <!-- Sequential HRI -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Sequential Adaptation with Human-Robot Interactions</h2>
-
-        <div class="columns is-centered">
-          <!-- First Video Column -->
-          <div class="column">
-            <div class="content has-text-justified">
-              <video id="hri_no_adaptation" autoplay controls muted loop playsinline height="100%">
-                <source src="./static/videos/hri_no_adaptation.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-    
-          <!-- Second Video Column -->
-          <div class="column">
-            <div class="content has-text-justified">
-              <video id="hri_adaptation" autoplay controls muted loop playsinline height="100%">
-                <source src="./static/videos/hri_adaptation.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-    
-        </div>
-
-      
-        <div class="content has-text-justified">
-          <p>
-            In this experiment, we evaluate the model's capability to perform continuous adaptation while maintaining passivity with respect to 
-            human-generated perturbations. We attach the unknown basket to the end effector, sequentially add and remove two unknown objects, 
-            and finally, remove the basket, perturbing the robot between these actions. RME provided an accurate load estimation,
-             allowing the robot to maintain target position and orientation, while being passive to human-generated forces (even when the model confused human perturbations with model mismatch,
-              it allowed perturbation, and instantaneously corrected itself after being released). 
-            Without RME-based adaptation, robot is pulled down by the gravitational force of external objects, which activates joint limit constraint of the Constrained Passive Interaction Controller.
-          </p>
-        </div>
-      </div>
-    </div>
-    <!--/ Sequential HRI -->
-
-    <!-- qbHand -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Pick and Place with Human-Robot Interactions</h2>
-
-        <div class="columns is-centered">
-          <!-- First Video Column -->
-          <div class="column">
-            <div class="content has-text-justified">
-              <video id="hri_no_adaptation" autoplay controls muted loop playsinline height="100%">
-                <source src="./static/videos/pick_place.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-    
-          <!-- Second Video Column -->
-          <div class="column">
-            <div class="content has-text-justified">
-              <video id="hri_adaptation" autoplay controls muted loop playsinline height="100%">
-                <source src="./static/videos/intercept.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-    
-        </div>
-
-      
-        <div class="content has-text-justified">
-          <p>
-            In this experiment, we evaluate framework performance in the Pick and Place task with a <a href="https://journals.sagepub.com/doi/full/10.1177/0278364918765952">passive velocity-based inverse kinematics (PVIK)</a> controller, utilizing 
-            the qb SoftHand2 Research end effector, and the OptiTrack motion capture system. In the first test, the robot aims to pick an unknown object (700 grams), and place it on top of the box,
-            maintaining passivity with respect to human-generated perturbations. During the process, we add an additional 500 grams to the basket. RME allows
-            the robot to track the desired trajectory by rapidly adapting to unknown dynamics, while a controller without RME fails to pick up a heavy object.
-            In the second test, the robot aims to track and intercept the basket (1200 grams) from a human and place it on top of the box, which is possible
-            with the use of RME. In both experiments, the controller with RME augmentation preserves stability and passivity of the closed-loop system.
-          </p>
-        </div>
-      </div>
-    </div>
-    <!--/ qbHand -->
+  
 
     <!-- Acknowledgments -->
-    <div class="columns is-centered" style="margin-top: 25px;">
+    <!-- <div class="columns is-centered" style="margin-top: 25px;">
       <div class="column is-full-width">
         <h2 class="title is-3">Acknowledgments</h2>
 
@@ -347,7 +225,7 @@
         </div>
 
       </div>
-    </div>
+    </div> -->
     <!--/ Acknowledgments -->
 
   </div>
@@ -356,7 +234,7 @@
 
 
 
-<section class="section" id="BibTeX">
+<!-- <section class="section" id="BibTeX">
   <div class="container is-max-desktop content" style="margin-top: -55px;">
     <h2 class="title">BibTeX</h2>
     <pre><code>@inproceedings{jaszczuk2025rapid,
@@ -368,33 +246,33 @@
     }</code></pre>
   </div>
 </section>
+ -->
 
-
-
+<!-- 
 <section class="section">
-  <div class="container is-max-desktop">
+  <div class="container is-max-desktop"> -->
 
     <!-- Logo -->
-    <div class="columns is-centered">
+    <!-- <div class="columns is-centered">
       <div class="column is-full-width">
    
         <div style="position: relative; display: inline-block;">
-          <img src="./static/images/penn_corl.png" alt="GRASP and CoRL" style="display: block;">
+          <img src="./static/images/penn_corl.png" alt="GRASP and CoRL" style="display: block;"> -->
 
           <!-- Left half -->
-          <a href="https://www.grasp.upenn.edu" 
-            style="position: absolute; top: 0; left: 0; width: 50%; height: 100%;"></a>
+          <!-- <a href="https://www.grasp.upenn.edu" 
+            style="position: absolute; top: 0; left: 0; width: 50%; height: 100%;"></a> -->
 
           <!-- Right half -->
-          <a href="https://www.corl.org" 
+          <!-- <a href="https://www.corl.org" 
             style="position: absolute; top: 0; left: 50%; width: 50%; height: 100%;"></a>
         </div>
       </div>
-    </div>
+    </div> -->
     <!--/ Logo -->
 
-  </div>
-</section>
+  <!-- </div>
+</section> -->
 
 
 

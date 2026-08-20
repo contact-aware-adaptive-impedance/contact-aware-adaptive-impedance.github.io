@@ -51,64 +51,7 @@ Contact-Aware Adaptive Impedance Control">
           <h1 class="title is-2 publication-title">
             Multimodal Interaction Estimation for Contact-Aware Adaptive Impedance Control
           </h1>
-          <!-- <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="https://mateuszjaszczuk.com">Mateusz Jaszczuk</a>,
-            </span>
-            <span class="author-block">
-              <a href="https://nbfigueroa.github.io">Nadia Figueroa</a>
-            </span>
-          </div>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><a href="https://www.grasp.upenn.edu" style="color: black !important; text-decoration: none;">GRASP Lab, University of Pennsylvania</a></span>
-          </div>
-          
-          <div class="is-size-5 publication-authors mt-4">
-            <span class="author-block"><strong>Conference on Robot Learning (CoRL) 2025</strong></span>
-          </div>
-          <div class="column has-text-centered">
-            <div class="publication-links">
-              PDF Link
-              <span class="link-block">
-                <a href="https://openreview.net/pdf?id=2CIKnIwSta"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span>
-              arXiv Link
-              <span class="link-block">
-                <a href="https://arxiv.org/abs/2508.21007"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="https://www.youtube.com/watch?v=5A9QALBbuzc"
-                  class="external-link button is-normal is-rounded is-dark" target="_blank">
-                  <span class="icon">
-                    <i class="fab fa-youtube"></i>
-                  </span>
-                  <span>Video</span>
-                </a>
-              </span>
-              Code Link
-              <span class="link-block">
-                <a href="https://github.com/mateusz-jaszczuk/RapidMismatchEstimation"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code</span>
-                </a>
-              </span>
-            </div>
-          </div> -->
+
         </div>
       </div>
     </div>
@@ -119,10 +62,9 @@ Contact-Aware Adaptive Impedance Control">
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <img id="teaser" src="./static/images/framework.png" alt="Framework overview" style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
-      <h2 class="subtitle has-text-justified mt-4">
-        <strong>Interaction Classification and Adaptive Control Framework.</strong> We utilize a transformer-based architecture to fuse latent force and point cloud representations, allowing the model to distinguish applied payloads from perturbations using both modalities, allowing the adaptive controller to adjust gravity compensation and compliance accordingly.
-      </h2>
+      <video id="adaptive_ctrl_video2" autoplay controls muted loop playsinline style="max-width: 80%; height: auto; display: block; margin: 0 auto;">
+        <source src="./static/videos/all.mp4" type="video/mp4">
+      </video>
     </div>
   </div>
 </section>
@@ -162,117 +104,124 @@ Contact-Aware Adaptive Impedance Control">
 <section class="section">
   <div class="container is-max-desktop">
 
-    <!-- Static Tests. -->
+
+
+
+    <!-- SysID + ADA. -->
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Experiment 1...</h2>
+        <h2 class="title is-3">Perturbations Detection</h2>
 
         <div class="columns is-centered">
-          <!-- First Video Column -->
-          <div class="column">
-            <div class="content has-text-justified">
-              <!-- <video id="static_900" autoplay controls muted loop playsinline height="100%">
-                <source src="./static/videos/static_900g.mp4" type="video/mp4">
-              </video> -->
-            </div>
-          </div>
-    
-          <!-- Second Video Column -->
-          <div class="column">
-            <div class="content has-text-justified">
-              <!-- <video id="static_1290" autoplay controls muted loop playsinline height="100%">
-                <source src="./static/videos/static_1290.mp4" type="video/mp4">
-              </video> -->
-            </div>
+          <div class="column has-text-centered">
+            <img src="./static/images/detection_plots.png" alt="Adaptive impedance control detection plots" style="max-width: 90%; height: auto;">
           </div>
         </div>
         <div class="content has-text-justified">
           <p>
-            Description goes here...
+            Deployed on the Franka arm tracking equilibrium point with the controller, 
+            the classifier achieves high accuracy in detecting continuous perturbations when both physical contact and loads 
+            are present. The joint latent representation of force and point cloud data enables
+            the model to confidently distinguish interactions in complex scenarios, even when the force profiles resemble the applied load 
+            (a perturbation along the z-axis). In gray, we label time intervals during which a perturbation was applied to the robot, and in red, we mark time intervals when the NN predicted a compliant mode.
           </p>
         </div>
       </div>
     </div>
-    <!--/ Static Tests. -->
+    <!--/ SysID + ADA. -->
 
-
-
-  
-    
-
-
-  
-
-    <!-- Acknowledgments -->
-    <!-- <div class="columns is-centered" style="margin-top: 25px;">
+    <!-- SysID + ADA. -->
+    <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Acknowledgments</h2>
+        <h2 class="title is-3">Adaptive Impedance Control</h2>
 
-    
-        <div class="columns is-vcentered" style="margin-top: -30px;">
-          <div class="column is-four-fifths">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <video autoplay controls muted loop playsinline style="max-width: 80%; height: auto;">
+              <source src="./static/videos/ada.mov" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            To examine the controller's accuracy in the continuous adaptation, we deploy the interaction classification and adaptive 
+            control framework on the Franka arm and continuously apply loads and perturbations. The framework distinguishes load- and interaction-induced 
+            forces online, adjusting impedance parameters and gravity compensation in real-time. As shown in the video, 
+            this enables compliant behavior under human contact while maintaining precise trajectory tracking in the reactive mode.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ SysID + ADA. -->
+
+    <!-- SysID + ADA. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Intent Estimation</h2>
+
+        <div class="columns is-centered is-vcentered">
+          <div class="column is-two-thirds" style="padding-right: 5%;">
             <div class="content has-text-justified">
-              <p>We thank our anonymous reviewers, who provided thorough and fair feedback that improved the quality of our paper. This work was supported by the National Science Foundation (NSF) Foundational Research in Robotics (FRR) program under NSF CAREER Award Grant No. FRR-2443721.
+              <p>
+                To evaluate interaction force estimation, we use the estimate as the input to a Hidden Markov Model-inspired target belief filter, which estimates the robot's next target by evaluating the alignment
+                 of the interaction force with the end-effector-to-target distance vector. The adaptive controller provided accurate interaction force estimation, enabling reliable target inference and a collaborative
+                 human-robot-human transportation task, as shown in the video.
               </p>
             </div>
           </div>
-  
-          <div class="column is-one-fifth has-text-centered">
-            <figure class="image" style="max-width: 120px; margin: 0 auto;">
-              <img src="./static/images/NSF_logo.png" alt="NSF Logo">
-            </figure>
+          <div class="column is-one-third" style="padding-right: 11%;">
+            <video autoplay controls muted loop playsinline style="width: 100%; height: auto;">
+              <source src="./static/videos/intent.mp4" type="video/mp4">
+            </video>
           </div>
         </div>
-
       </div>
-    </div> -->
-    <!--/ Acknowledgments -->
+    </div>
+    <!--/ SysID + ADA. -->
 
-  </div>
-</section>
+  
 
-
-
-
-<!-- <section class="section" id="BibTeX">
-  <div class="container is-max-desktop content" style="margin-top: -55px;">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@inproceedings{jaszczuk2025rapid,
-      title={Rapid Mismatch Estimation via Neural Network Informed Variational Inference},
-      author={Mateusz Jaszczuk and Nadia Figueroa},
-      booktitle={9th Annual Conference on Robot Learning},
-      year={2025},
-      url={https://openreview.net/forum?id=2CIKnIwSta}
-    }</code></pre>
-  </div>
-</section>
- -->
-
-<!-- 
-<section class="section">
-  <div class="container is-max-desktop"> -->
-
-    <!-- Logo -->
-    <!-- <div class="columns is-centered">
+    <!-- Bimanual Manipulation -->
+    <div class="columns is-centered">
       <div class="column is-full-width">
-   
-        <div style="position: relative; display: inline-block;">
-          <img src="./static/images/penn_corl.png" alt="GRASP and CoRL" style="display: block;"> -->
+        <h2 class="title is-3">Bimanual and Contact-Rich Manipulation</h2>
 
-          <!-- Left half -->
-          <!-- <a href="https://www.grasp.upenn.edu" 
-            style="position: absolute; top: 0; left: 0; width: 50%; height: 100%;"></a> -->
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <video autoplay controls muted loop playsinline style="max-width: 80%; height: auto;">
+              <source src="./static/videos/bimanual.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            We deploy adaptive controller in contact-rich tasks, such as pushing and bimanual manipultion (unseen in training), simultaneously lift a box of unknown mass, thereby testing adaptation within a closed 
+             kinematic chain, subject to external perturbation. The same RME framework and interaction 
+             classifier as in the single-arm experiment are used (both robots use the more conservative 
+             of the two individual estimates); the classifier is fine-tuned only on real-robot data for 
+             better sim-to-real transfer on unseen setup. Subtracting the desired contact force from the external force lets the classifier distinguish desired contact from perturbations, enabling compliant yet precise contact-rich tasks.
 
-          <!-- Right half -->
-          <!-- <a href="https://www.corl.org" 
-            style="position: absolute; top: 0; left: 50%; width: 50%; height: 100%;"></a>
         </div>
       </div>
-    </div> -->
-    <!--/ Logo -->
+    </div>
+    <!--/ Bimanual Manipulation -->
 
-  <!-- </div>
-</section> -->
+    
+
+
+
+  
+    
+
+
+  
+
+  </div>
+</section>
+
+
+
+
 
 
 

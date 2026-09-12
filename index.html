@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="description"
@@ -7,8 +7,13 @@
 Contact-Aware Adaptive Impedance Control">
   <meta name="keywords" content="Adaptive Impedance Control">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Multimodal Interaction Estimation for Contact-Aware Adaptive Impedance Controll</title>
+  <title>Multimodal Interaction Estimation for Contact-Aware Adaptive Impedance Control</title>
 
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Multimodal Interaction Estimation for Contact-Aware Adaptive Impedance Control">
+  <meta property="og:description" content="A task-agnostic interaction estimation and adaptive control framework fusing force history and 3D point cloud for contact-aware robot manipulation.">
+  <meta name="twitter:card" content="summary_large_image">
 
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -22,233 +27,244 @@ Contact-Aware Adaptive Impedance Control">
     gtag('config', 'G-PYVRSFMDRL');
   </script>
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
         rel="stylesheet">
 
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.svg">
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
+  <link rel="stylesheet" href="./static/css/index.css?v=29">
 </head>
 <body>
+<main class="page">
 
-
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-2 publication-title">
-            Multimodal Interaction Estimation for Contact-Aware Adaptive Impedance Control
-          </h1>
-
+  <!-- HERO -->
+  <section class="hero reveal">
+    <div class="row row--hero">
+      <div>
+        <p class="kicker">Under Double-Blind Review</p>
+        <h1>Multimodal Interaction Estimation for Contact-Aware Adaptive Impedance Control</h1>
+        <p class="hero__subtitle">
+          Fusing force history and 3D point cloud through a transformer-based classifier to
+          distinguish unknown payloads from human contact, and to drive a variable-impedance
+          controller in real time.
+        </p>
+        <div class="btn-row">
+          <a class="btn" href="#abstract">
+            Read<span class="btn__arrow" aria-hidden="true">↓</span>
+          </a>
+          <a class="btn btn--ghost" href="#implementation">
+            Implementation<span class="btn__arrow" aria-hidden="true">↓</span>
+          </a>
+          <span class="btn btn--ghost btn--inactive" aria-disabled="true">
+            Paper<span class="btn__tag">Coming Soon</span>
+          </span>
+          <span class="btn btn--ghost btn--inactive" aria-disabled="true">
+            Code<span class="btn__tag">Coming Soon</span>
+          </span>
         </div>
       </div>
+
+      <div class="hero__visual">
+        <img src="./static/images/framework.png"
+             alt="Framework diagram: point cloud and force encoders feed a transformer with a prediction token into a classification head; the predicted interaction type drives a SysID and adaptive control module that outputs desired impedance, estimated load, and estimated interaction force for a Franka arm carrying a box subject to human interaction.">
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <video id="adaptive_ctrl_video2" autoplay controls muted loop playsinline style="max-width: 80%; height: auto; display: block; margin: 0 auto;">
+  <!-- ABSTRACT -->
+  <section class="abstract section section--divided reveal" id="abstract">
+    <p class="kicker">Abstract</p>
+    <div class="abstract__video">
+      <video autoplay controls muted loop playsinline>
         <source src="./static/videos/all.mp4" type="video/mp4">
       </video>
     </div>
-  </div>
-</section>
-
-<section class="hero is-light is-medium">
-  <div class="hero-body pt-6 pb-6">
-    <div class="container is-max-desktop">
-      <!-- Abstract -->
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3">Abstract</h2>
-          <div class="content has-text-justified">
-            <p>
-              With advancements in learning-based policies, robots are increasingly being deployed in human-centric environments, 
-              such as manufacturing floors and homes, where safe and precise operation requires compensating for unknown loads while 
-              remaining compliant during human interactions. Reliably distinguishing between these interaction types, however, is 
-              challenging with a single sensing modality, as force signals cannot distinguish between payloads and human push, and 
-              vision is susceptible to occlusions. We propose a task-agnostic interaction estimation and adaptive control 
-              framework that addresses this challenge by fusing force history and 3D point cloud through a transformer-based classifier. 
-              Trained with modality dropout for occlusion resilience and fine-tuned from simulation to hardware, the classifier achieves 
-              96.3% accuracy and maintains above 90% under complete occlusion of one modality. The classifier drives a system identification
-               framework that selectively compensates for unknown payloads and a variable-impedance controller that switches between adaptive 
-               and reactive modes, while simultaneously estimating interaction forces for downstream tasks, such as human intent estimation. 
-               We validate the framework under external perturbations across single-arm manipulation, intent-driven target switching, and zero-shot 
-               bimanual deployment on two Franka arms lifting a box of unknown mass, demonstrating generalization to closed kinematic chains and unseen morphologies.
-            </p>
-          </div>
-        </div>
-      </div>
-      <!--/ Abstract -->
+    <div class="abstract__body">
+      <p>
+        With advancements in learning-based policies, robots are increasingly being deployed in human-centric environments,
+        such as manufacturing floors and homes, where safe and precise operation requires compensating for unknown loads while
+        remaining compliant during human interactions. Reliably distinguishing between these interaction types is
+        challenging with a single sensing modality, as force signals cannot separate payloads from human pushes, and
+        vision is susceptible to occlusions. We propose a <em>task-agnostic</em> interaction estimation and adaptive control
+        framework that addresses this challenge by fusing force history and 3D point cloud through a transformer-based classifier.
+        Trained with modality dropout for occlusion resilience and fine-tuned from simulation to hardware, the classifier achieves
+        91.89% accuracy and maintains above 90% under complete occlusion of one modality. The classifier drives a system identification
+        framework that selectively compensates for unknown payloads and a variable-impedance controller that switches between adaptive
+        and reactive modes, while simultaneously estimating interaction forces for downstream tasks, such as human intent estimation.
+        We validate the framework under external perturbations and unknown loads across single-arm manipulation, deployment with an
+        imitation-learning-based policy, intent-driven target switching, and zero-shot bimanual deployment on two Franka arms lifting
+        a box of unknown mass, demonstrating generalization to closed kinematic chains and unseen morphologies, enabling safe and
+        precise deployment.
+      </p>
     </div>
-  </div>
-</section>
+  </section>
 
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-
-
-
-
-    <!-- SysID + ADA. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Perturbations Detection</h2>
-
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <img src="./static/images/detection_plots.png" alt="Adaptive impedance control detection plots" style="max-width: 90%; height: auto;">
-          </div>
-        </div>
-        <div class="content has-text-justified">
-          <p>
-            Deployed on the Franka arm tracking equilibrium point with the controller, 
-            the classifier achieves high accuracy in detecting continuous perturbations when both physical contact and loads 
-            are present. The joint latent representation of force and point cloud data enables
-            the model to confidently distinguish interactions in complex scenarios, even when the force profiles resemble the applied load 
-            (a perturbation along the z-axis). In gray, we label time intervals during which a perturbation was applied to the robot, and in red, we mark time intervals when the NN predicted a compliant mode.
-          </p>
-        </div>
-      </div>
+  <!-- EXPERIMENTS -->
+  <section class="experiments section section--divided reveal" id="experiments">
+    <div class="experiments__intro">
+      <p class="kicker">Experiments</p>
+      <p class="lede">Validated across single-arm, intent-driven, and bimanual manipulation.</p>
     </div>
-    <!--/ SysID + ADA. -->
 
-    <!-- SysID + ADA. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Adaptive Impedance Control</h2>
+    <nav class="experiments__nav" aria-label="Jump to experiment">
+      <a href="#task-adapt">Adaptive Impedance Control</a>
+      <a href="#task-intent">Intent Estimation</a>
+      <a href="#task-bimanual">Bimanual Manipulation</a>
+      <a href="#task-imitation">Imitation Learning</a>
+      <a href="#task-detect">Perturbations Detection</a>
+    </nav>
 
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <video autoplay controls muted loop playsinline style="max-width: 80%; height: auto;">
-              <source src="./static/videos/ada.mp4" type="video/mp4">
-            </video>
-          </div>
+    <div class="experiments__tasks">
+
+      <!-- ADAPTIVE IMPEDANCE CONTROL -->
+      <div class="task task--adapt" id="task-adapt">
+        <div class="task__head">
+          <h3>Adaptive Impedance Control</h3>
         </div>
-        <div class="content has-text-justified">
+        <div class="task__media">
+          <video autoplay controls muted loop playsinline>
+            <source src="./static/videos/ada.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="task__body">
           <p>
-            To examine the controller's accuracy in the continuous adaptation, we deploy the interaction classification and adaptive 
-            control framework on the Franka arm and continuously apply loads and perturbations. The framework distinguishes load- and interaction-induced 
-            forces online, adjusting impedance parameters and gravity compensation in real-time. As shown in the video, 
+            To examine the controller's accuracy in the continuous adaptation, we deploy the interaction classification and adaptive
+            control framework on the Franka arm and continuously apply loads and perturbations. The framework distinguishes load- and interaction-induced
+            forces online, adjusting impedance parameters and gravity compensation in real-time. As shown in the video,
             this enables compliant behavior under human contact while maintaining precise trajectory tracking in the reactive mode.
           </p>
         </div>
       </div>
-    </div>
-    <!--/ SysID + ADA. -->
 
-    <!-- SysID + ADA. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Intent Estimation</h2>
-
-        <div class="columns is-centered is-vcentered">
-          <div class="column is-two-thirds" style="padding-right: 5%;">
-            <div class="content has-text-justified">
-              <p>
-                To evaluate interaction force estimation, we use the estimate as the input to a Hidden Markov Model-inspired target belief filter, which estimates the robot's next target by evaluating the alignment
-                 of the interaction force with the end-effector-to-target distance vector. The adaptive controller provided accurate interaction force estimation, enabling reliable target inference and a collaborative
-                 human-robot-human transportation task, as shown in the video.
-              </p>
-            </div>
+      <!-- INTENT ESTIMATION -->
+      <div class="task task--intent task--split" id="task-intent">
+        <div class="task__head">
+          <h3>Intent Estimation</h3>
+        </div>
+        <div class="row row--split">
+          <div class="task__body">
+            <img src="./static/images/intent.png" alt="Sequence showing the Franka arm's end effector arcing left, a person pressing a button on the robot, the arm pivoting toward a small target stand, and arcing left again toward it.">
+            <p>
+              To evaluate interaction force estimation, we use the estimate as the input to a Hidden Markov Model-inspired target belief filter, which estimates the robot's next target by evaluating the alignment
+              of the interaction force with the end-effector-to-target distance vector. The adaptive controller provided accurate interaction force estimation, enabling reliable target inference and a collaborative
+              human-robot-human transportation task, as shown in the video.
+            </p>
           </div>
-          <div class="column is-one-third" style="padding-right: 11%;">
-            <video autoplay controls muted loop playsinline style="width: 100%; height: auto;">
+          <div class="task__media">
+            <video autoplay controls muted loop playsinline>
               <source src="./static/videos/intent.mp4" type="video/mp4">
             </video>
           </div>
         </div>
       </div>
-    </div>
-    <!--/ SysID + ADA. -->
 
-  
-
-    <!-- Bimanual Manipulation -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Bimanual and Contact-Rich Manipulation</h2>
-
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <video autoplay controls muted loop playsinline style="max-width: 80%; height: auto;">
-              <source src="./static/videos/bimanual.mp4" type="video/mp4">
-            </video>
-          </div>
+      <!-- BIMANUAL AND CONTACT-RICH MANIPULATION -->
+      <div class="task task--bimanual" id="task-bimanual">
+        <div class="task__head">
+          <h3>Bimanual and Contact-Rich Manipulation</h3>
         </div>
-        <div class="content has-text-justified">
-          <p>
-            We deploy adaptive controller in contact-rich tasks, such as pushing and bimanual manipultion (unseen in training), simultaneously lift a box of unknown mass, thereby testing adaptation within a closed 
-             kinematic chain, subject to external perturbation. The same RME framework and interaction 
-             classifier as in the single-arm experiment are used (both robots use the more conservative 
-             of the two individual estimates); the classifier is fine-tuned only on real-robot data for 
-             better sim-to-real transfer on unseen setup. Subtracting the desired contact force from the external force lets the classifier distinguish desired contact from perturbations, enabling compliant yet precise contact-rich tasks.
-
+        <div class="task__media">
+          <video autoplay controls muted loop playsinline>
+            <source src="./static/videos/bimanual.mp4" type="video/mp4">
+          </video>
         </div>
-      </div>
-    </div>
-    <!--/ Bimanual Manipulation -->
-
-    
-
-
-
-  
-    
-
-
-  
-
-  </div>
-</section>
-
-
-
-
-
-
-
-
-
-<footer class="footer">
-  <div class="container">
-    
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
+        <div class="task__body">
           <p>
-            This website is licensed under a <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-          <p>
-            This page was built using the <a
-              href="https://github.com/eliahuhorwitz/Academic-project-page-template">Academic Project Page Template</a> which was adopted from the <a
-              href="https://nerfies.github.io">Nerfies</a> project page. 
-            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer.
+            We deploy adaptive controller in contact-rich tasks, such as pushing and bimanual manipulation (unseen in training), simultaneously lift a box of unknown mass, thereby testing adaptation within a closed
+            kinematic chain, subject to external perturbation. The same RME framework and interaction
+            classifier as in the single-arm experiment are used (both robots use the more conservative
+            of the two individual estimates); the classifier is fine-tuned only on real-robot data for
+            better sim-to-real transfer on unseen setup. Subtracting the desired contact force from the external force lets the classifier distinguish desired contact from perturbations, enabling compliant yet precise contact-rich tasks.
           </p>
         </div>
       </div>
-    </div>
-  </div>
-</footer>
 
+      <!-- IMITATION LEARNING (placeholder) -->
+      <div class="task task--imitation" id="task-imitation">
+        <div class="task__head">
+          <h3>Imitation Learning</h3>
+        </div>
+        <div class="task__placeholder">
+          <p>Results coming soon.</p>
+        </div>
+      </div>
+
+      <!-- PERTURBATIONS DETECTION -->
+      <div class="task task--detect" id="task-detect">
+        <div class="task__head">
+          <h3>Perturbations Detection</h3>
+        </div>
+        <div class="task__media">
+          <img src="./static/images/detection_plots.png" alt="Adaptive impedance control detection plots across four experiments showing external force traces, applied load intervals, perturbation intervals, and the classifier's compliant-mode predictions over time.">
+        </div>
+        <div class="task__body">
+          <p>
+            Deployed on the Franka arm tracking equilibrium point with the controller,
+            the classifier achieves high accuracy in detecting continuous perturbations when both physical contact and loads
+            are present. The joint latent representation of force and point cloud data enables
+            the model to confidently distinguish interactions in complex scenarios, even when the force profiles resemble the applied load
+            (a perturbation along the z-axis). In gray, we label time intervals during which a perturbation was applied to the robot, and in red, we mark time intervals when the NN predicted a compliant mode.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- IMPLEMENTATION DETAILS AND PROOFS -->
+  <section class="implementation section section--divided reveal" id="implementation">
+    <p class="kicker">Implementation Details and Proofs</p>
+
+    <div class="implementation__grid">
+      <div class="implementation__col">
+        <div class="implementation__col-head">
+          <h3>Network Architecture</h3>
+          <a class="col-link" href="#" target="_blank" rel="noopener">See Details<span aria-hidden="true">↗</span></a>
+        </div>
+        <p>
+          The interaction classifier fuses a force-history encoder and a point-cloud encoder through
+          a shared transformer with a learned prediction token. It is trained with modality dropout
+          for occlusion resilience, first in simulation and then fine-tuned on real-robot data.
+        </p>
+      </div>
+      <div class="implementation__col">
+        <div class="implementation__col-head">
+          <h3>Intent HMM</h3>
+          <a class="col-link" href="#" target="_blank" rel="noopener">See Details<span aria-hidden="true">↗</span></a>
+        </div>
+        <p>
+          We model target inference as a Hidden Markov Model over candidate targets, with transition
+          and emission probabilities derived from the alignment between the estimated interaction
+          force and the end-effector-to-target direction.
+        </p>
+      </div>
+      <div class="implementation__col">
+        <div class="implementation__col-head">
+          <h3>Passivity Proof</h3>
+          <a class="col-link" href="#" target="_blank" rel="noopener">See Details<span aria-hidden="true">↗</span></a>
+        </div>
+        <p>
+          We establish passivity of the switching variable-impedance controller across adaptive and
+          reactive modes, bounding the net energy injected at the interaction port and guaranteeing
+          stable coupling with an unmodeled human or environment.
+        </p>
+      </div>
+    </div>
+
+
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="page-footer reveal">
+    <p>
+      This website is licensed under a <a rel="license"
+                                          href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+      Commons Attribution-ShareAlike 4.0 International License</a>.
+    </p>
+  </footer>
+
+</main>
+<script src="./static/js/index.js" defer></script>
 </body>
 </html>

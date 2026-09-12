@@ -110,7 +110,7 @@ Contact-Aware Adaptive Impedance Control">
       <a href="#task-adapt">Adaptive Impedance Control</a>
       <a href="#task-intent">Intent Estimation</a>
       <a href="#task-bimanual">Bimanual Manipulation</a>
-      <a href="#task-imitation">Imitation Learning</a>
+      <a href="#task-imitation">Imitation Learning Policy</a>
       <a href="#task-detect">Perturbations Detection</a>
     </nav>
 
@@ -122,9 +122,20 @@ Contact-Aware Adaptive Impedance Control">
           <h3>Adaptive Impedance Control</h3>
         </div>
         <div class="task__media">
-          <video autoplay controls muted loop playsinline>
-            <source src="./static/videos/ada.mp4" type="video/mp4">
-          </video>
+          <div class="compare">
+            <figure class="compare__item">
+              <video autoplay controls muted loop playsinline>
+                <source src="./static/videos/fixed_gain.mp4" type="video/mp4">
+              </video>
+              <figcaption>Fixed Gain</figcaption>
+            </figure>
+            <figure class="compare__item">
+              <video autoplay controls muted loop playsinline>
+                <source src="./static/videos/ada.mp4" type="video/mp4">
+              </video>
+              <figcaption>Adaptive</figcaption>
+            </figure>
+          </div>
         </div>
         <div class="task__body">
           <p>
@@ -164,9 +175,20 @@ Contact-Aware Adaptive Impedance Control">
           <h3>Bimanual and Contact-Rich Manipulation</h3>
         </div>
         <div class="task__media">
-          <video autoplay controls muted loop playsinline>
-            <source src="./static/videos/bimanual.mp4" type="video/mp4">
-          </video>
+          <div class="compare">
+            <figure class="compare__item">
+              <video autoplay controls muted loop playsinline>
+                <source src="./static/videos/push.mp4" type="video/mp4">
+              </video>
+              <figcaption>Contact Force Application</figcaption>
+            </figure>
+            <figure class="compare__item">
+              <video autoplay controls muted loop playsinline>
+                <source src="./static/videos/bimanual.mp4" type="video/mp4">
+              </video>
+              <figcaption>Bimanual Box Pick Up</figcaption>
+            </figure>
+          </div>
         </div>
         <div class="task__body">
           <p>
@@ -179,13 +201,51 @@ Contact-Aware Adaptive Impedance Control">
         </div>
       </div>
 
-      <!-- IMITATION LEARNING (placeholder) -->
+      <!-- IMITATION LEARNING -->
       <div class="task task--imitation" id="task-imitation">
         <div class="task__head">
-          <h3>Imitation Learning</h3>
+          <h3>Imitation Learning Policy</h3>
         </div>
-        <div class="task__placeholder">
-          <p>Results coming soon.</p>
+        <div class="task__media">
+          <div class="trial-picker" role="tablist" aria-label="EMP trial">
+            <button type="button" class="trial-picker__btn is-active" data-trial="1">Trial 1</button>
+            <button type="button" class="trial-picker__btn" data-trial="2">Trial 2</button>
+            <button type="button" class="trial-picker__btn" data-trial="3">Trial 3</button>
+          </div>
+          <div class="placeholder-row" data-emp-trials>
+            <figure class="compare__item">
+              <video autoplay controls muted loop playsinline
+                data-emp="soft"
+                src="./static/videos/emp/emp_soft_1.mp4"
+                data-src1="./static/videos/emp/emp_soft_1.mp4"
+                data-src2="./static/videos/emp/emp_soft_2.mp4"
+                data-src3="./static/videos/emp/emo_soft_3.mp4"></video>
+              <figcaption>Soft</figcaption>
+            </figure>
+            <figure class="compare__item">
+              <video autoplay controls muted loop playsinline
+                data-emp="stiff"
+                src="./static/videos/emp/emp_stiff_1.mp4"
+                data-src1="./static/videos/emp/emp_stiff_1.mp4"
+                data-src2="./static/videos/emp/emp_stiff_2.mp4"
+                data-src3="./static/videos/emp/emp_stiff_3.mp4"></video>
+              <figcaption>Stiff</figcaption>
+            </figure>
+            <figure class="compare__item">
+              <video autoplay controls muted loop playsinline
+                data-emp="ada"
+                src="./static/videos/emp/emp_ada_1.mp4"
+                data-src1="./static/videos/emp/emp_ada_1.mp4"
+                data-src2="./static/videos/emp/emp_ada_2.mp4"
+                data-src3="./static/videos/emp/emp_ada_3.mp4"></video>
+              <figcaption>Adaptive</figcaption>
+            </figure>
+          </div>
+        </div>
+        <div class="task__body">
+          <p>
+            To evaluate our framework with an imitation-learning policy, we deploy the EMP policy (<a href="https://elastic-motion-policy.github.io/EMP/" target="_blank" rel="noopener">Li et al.</a>) for a pouring task involving an unknown 0.85 kg payload, which the policy was not trained to handle, and compare fixed-gain controllers against our adaptive impedance controller (with the classifier fine-tuned only on real-robot data to improve sim-to-real transfer to this unseen setup). The soft controller yields to the applied payload and fails to complete the task in all three trials, diverging from the trajectory and colliding with the table. The stiff controller improves tracking; however, it fails to pour the payload in two trials due to collision with the pot and an inability to complete the task, as it cannot compensate for the unknown dynamics. The adaptive controller, which adjusts impedance and gravity compensation online, most closely follows the EMP trajectory and succeeds in all three trials, allowing the controller to safely and precisely execute the learned policy with unknown loads while maintaining compliance to human perturbations.
+          </p>
         </div>
       </div>
 

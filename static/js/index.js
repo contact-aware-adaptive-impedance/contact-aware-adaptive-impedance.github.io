@@ -16,3 +16,30 @@
 
   targets.forEach(function (el) { observer.observe(el); });
 })();
+
+// EMP trial picker: swap soft/stiff/adaptive videos together.
+(function () {
+  var picker = document.querySelector('.trial-picker');
+  var group = document.querySelector('[data-emp-trials]');
+  if (!picker || !group) return;
+
+  var buttons = picker.querySelectorAll('.trial-picker__btn');
+  var videos = group.querySelectorAll('video[data-emp]');
+
+  picker.addEventListener('click', function (e) {
+    var btn = e.target.closest('.trial-picker__btn');
+    if (!btn) return;
+    var trial = btn.dataset.trial;
+
+    buttons.forEach(function (b) { b.classList.toggle('is-active', b === btn); });
+
+    videos.forEach(function (video) {
+      var src = video.dataset['src' + trial];
+      if (!src || video.getAttribute('src') === src) return;
+      var wasPlaying = !video.paused;
+      video.setAttribute('src', src);
+      video.load();
+      if (wasPlaying) video.play();
+    });
+  });
+})();

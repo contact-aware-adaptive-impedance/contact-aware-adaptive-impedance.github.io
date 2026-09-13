@@ -147,6 +147,7 @@ a:hover { text-decoration: underline; }
 
 /* Grid helpers -------------------------------------------------- */
 .row { display: grid; gap: var(--gap-sm); }
+.row > * { min-width: 0; }
 .row--hero { grid-template-columns: 1.05fr 1fr; align-items: center; gap: 40px; }
 .row--split { grid-template-columns: 1.3fr 1fr; align-items: center; gap: 32px; }
 
@@ -362,6 +363,6 @@ code, pre, .mono {
   h1 { font-size: 34px; }
   .hero h1 { font-size: 26px; }
   h2 { font-size: 22px; }
-  .row--hero, .row--split { grid-template-columns: 1fr; }
+  .row--hero, .row--split, .task--split .row--split { grid-template-columns: 1fr; }
   .task--split .task__media { order: -1; }
 }
